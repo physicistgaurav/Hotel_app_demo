@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "52747009939",
+    "project_id": "fir-userauth-5de5b",
+    "storage_bucket": "fir-userauth-5de5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52747009939:android:28ccb2b9d0bcbb5d4ab266",
+        "android_client_info": {
+          "package_name": "com.example.flutter_userauthfull"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52747009939-gf2htjoee0uldu5u6p6vomj6qvlifl5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0uZXDJ-VAieFTfCMAVvHnFVWGufBJy68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52747009939-gf2htjoee0uldu5u6p6vomj6qvlifl5q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "52747009939-3pui8pruil6seersaqu0qme718tijsfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterUserauthfull"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
