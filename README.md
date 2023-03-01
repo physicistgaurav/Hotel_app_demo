@@ -5,16 +5,16 @@ A Flutter User Authentication app with email password authentication, forgot pas
 This is home page
 
 
-![](assets/home.jpg)
+![](flutter_userauthfull/assets/home.jpg)
 
 
 This is Login page
 
 
-![](assets/login.jpg)
+![](flutter_userauthfull/assets/login.jpg)
 
 
 
 This is Signup page
 
-![](assets/signup.jpg)
+![](flutter_userauthfull/assets/signup.jpg)
