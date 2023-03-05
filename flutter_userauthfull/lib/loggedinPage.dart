@@ -17,7 +17,7 @@ class LoggedinPage extends StatefulWidget {
 }
 
 class _LoggedinPageState extends State<LoggedinPage> {
-  int index = 1;
+  int index = 0;
 
   final items = const [
     Icon(Icons.home, size: 22),
@@ -28,10 +28,11 @@ class _LoggedinPageState extends State<LoggedinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBody: true,
         bottomNavigationBar: CurvedNavigationBar(
           items: items,
           index: index,
-          color: Colors.blue,
+          color: Color.fromARGB(247, 131, 131, 125),
           backgroundColor: Colors.transparent,
           onTap: (selectedIndex) {
             setState(() {

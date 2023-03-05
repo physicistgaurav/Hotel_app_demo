@@ -19,12 +19,13 @@ class _LoginFormState extends State<LoginForm> {
   Future submit() async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text)
+            email: emailController.text.trim(),
+            password: passwordController.text.trim())
         .then((value) => print(value.user?.uid))
         .onError((error, stackTrace) {
       print(error.toString());
       setState(() {
-        tempError = error.toString();
+        tempError = "Invalid Email/Password";
       });
     });
   }
