@@ -64,8 +64,8 @@ class _LoginFormState extends State<LoginForm> {
               submit();
             },
             style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-                onPrimary: Colors.white,
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20))),

@@ -1,9 +1,8 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_userauthfull/drawer.dart';
 
 final List rooms = [
   {"image": "assets/hotel/hotel1.jpg", "title": "Room around Pashipati"},
@@ -13,8 +12,15 @@ final List rooms = [
   {"image": "assets/hotel/hotel5.jpg", "title": "Room around Baneshwor"},
 ];
 
-class HomeBottom extends StatelessWidget {
+class HomeBottom extends StatefulWidget {
   const HomeBottom({Key? key}) : super(key: key);
+
+  @override
+  State<HomeBottom> createState() => _HomeBottomState();
+}
+
+class _HomeBottomState extends State<HomeBottom> {
+  // bool _isAppBarExpanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +30,8 @@ class HomeBottom extends StatelessWidget {
           SliverAppBar(
             expandedHeight: 200,
             backgroundColor: Colors.cyan,
-            leading: IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NavDrawer()));
-              },
-            ),
-            floating: true,
+            floating: false,
+            pinned: false,
             flexibleSpace: ListView(
               children: [
                 SizedBox(
@@ -86,8 +83,8 @@ class HomeBottom extends StatelessWidget {
 
 Widget _buildRooms(BuildContext context, int index) {
   var room = rooms[index % rooms.length];
-  int rand = Random().nextInt(500);
-  var randagain = rand.toString();
+  var randagain = (Random().nextInt(500)).toString();
+
   return Container(
     margin: EdgeInsets.all(20.0),
     child: ClipRRect(
@@ -127,7 +124,7 @@ Widget _buildRooms(BuildContext context, int index) {
                     child: Container(
                       padding: EdgeInsets.all(10.0),
                       color: Color.fromARGB(255, 153, 153, 153),
-                      child: Text("\Rs. 1500"),
+                      child: Text("Rs. 1500"),
                     ),
                   )
                 ],
@@ -176,7 +173,7 @@ Widget _buildRooms(BuildContext context, int index) {
                           width: 5.0,
                         ),
                         Text(
-                          "(" + randagain + " reviews)",
+                          "($randagain reviews)",
                           style: TextStyle(color: Colors.grey),
                         )
                       ],

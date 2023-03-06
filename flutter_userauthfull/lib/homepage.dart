@@ -99,8 +99,8 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
-                            onPrimary: Colors.white,
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
@@ -119,8 +119,8 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
-                            onPrimary: Colors.white,
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
@@ -253,10 +253,10 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  primary: _formsIndex == 1
+                                  backgroundColor: _formsIndex == 1
                                       ? Colors.red
                                       : Colors.white,
-                                  onPrimary: _formsIndex == 1
+                                  foregroundColor: _formsIndex == 1
                                       ? Colors.white
                                       : Colors.black,
                                   shape: RoundedRectangleBorder(
@@ -273,10 +273,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  primary: _formsIndex == 2
+                                  backgroundColor: _formsIndex == 2
                                       ? Colors.red
                                       : Colors.white,
-                                  onPrimary: _formsIndex == 2
+                                  foregroundColor: _formsIndex == 2
                                       ? Colors.white
                                       : Colors.black,
                                   shape: RoundedRectangleBorder(

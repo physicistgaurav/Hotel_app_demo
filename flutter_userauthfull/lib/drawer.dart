@@ -88,7 +88,7 @@ Widget menuItem(BuildContext context, int id, String title, IconData icon) {
                         centerTitle: true,
                         elevation: 0,
                       ),
-                      body: Inboxbottom())));
+                      body: ChatScreen())));
           break;
         case 4:
           Navigator.push(
@@ -107,7 +107,7 @@ Widget menuItem(BuildContext context, int id, String title, IconData icon) {
                         centerTitle: true,
                         elevation: 0,
                       ),
-                      body: Inboxbottom())));
+                      body: ChatScreen())));
           break;
         case 6:
           FirebaseAuth.instance.signOut();

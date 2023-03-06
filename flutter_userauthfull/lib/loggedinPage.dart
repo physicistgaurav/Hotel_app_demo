@@ -55,7 +55,7 @@ class _LoggedinPageState extends State<LoggedinPage> {
         widget = const FriendsBottom();
         break;
       case 2:
-        widget = const Inboxbottom();
+        widget = const ChatScreen();
         break;
       case 3:
         widget = const ProfilBottom();

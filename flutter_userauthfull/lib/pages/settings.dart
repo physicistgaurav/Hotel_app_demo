@@ -89,8 +89,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {},
                   child: Text("Edit Profile"),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.yellow,
-                      onPrimary: Colors.black,
+                      backgroundColor: Colors.yellow,
+                      foregroundColor: Colors.black,
                       side: BorderSide.none,
                       shape: StadiumBorder()),
                 ),
@@ -236,8 +236,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: () {},
                       child: Text("Submit"),
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          onPrimary: Colors.black,
+                          backgroundColor: Colors.green,
+                          foregroundColor: Colors.black,
                           side: BorderSide.none,
                           shape: StadiumBorder()),
                     ),
