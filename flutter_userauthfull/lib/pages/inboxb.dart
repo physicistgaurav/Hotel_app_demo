@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_declarations
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_userauthfull/pages/constant.dart';
@@ -32,67 +33,79 @@ class _ChatScreenState extends State<ChatScreen> {
     const apiKey = apiSecretKey;
 
     var url = Uri.https("api.openai.com", "/v1/completions");
-    final response = await http.post(url,
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": "Bearer $apiKey"
-        },
-        body: jsonEncode({
-          "model": "text-davinci-003",
-          "prompt": prompt,
-          'temperature': 0,
-          'max_tokens': 2000,
-          'top_p': 1,
-          'frequency_penalty': 0.0,
-          'presence_penalty': 0.0,
-        }));
+    var client = HttpClient()
+      ..badCertificateCallback =
+          ((X509Certificate cert, String host, int port) => true);
+    var request = await client.postUrl(url);
+    request.headers.set('Content-Type', 'application/json');
+    request.headers.set('Authorization', 'Bearer $apiKey');
 
-    // Decode the response
-    Map<String, dynamic> newresponse = jsonDecode(response.body);
+    request.add(utf8.encode(jsonEncode({
+      "model": "text-davinci-003",
+      "prompt": prompt,
+      'temperature': 0,
+      'max_tokens': 2000,
+      'top_p': 1,
+      'frequency_penalty': 0.0,
+      'presence_penalty': 0.0,
+    })));
 
-    return newresponse['choices'][0]['text'];
+    var response = await request.close();
+    var responseBody = await response.transform(utf8.decoder).join();
+
+    Map<String, dynamic> jsonResponse = json.decode(responseBody);
+    return jsonResponse['choices'][0]['text'];
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 100,
-          centerTitle: true,
-          title: const Padding(
-            padding: EdgeInsets.all(8),
-            child: Text(
-              "Let us Chat",
-              textAlign: TextAlign.center,
-            ),
-          ),
-          backgroundColor: Colors.cyan,
-        ),
-        body: Column(
-          children: [
-            // chat body
-            Expanded(
-              child: _buildList(),
-            ),
-            Visibility(
-              visible: isLoading,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(
-                  color: Colors.blue,
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              toolbarHeight: 100,
+              centerTitle: true,
+              title: const Padding(
+                padding: EdgeInsets.all(8),
+                child: Text(
+                  "Let us Chat",
+                  textAlign: TextAlign.center,
                 ),
               ),
+              backgroundColor: Colors.cyan,
+              pinned: false,
+              floating: true,
+              snap: false,
             ),
-            Row(
-              children: [
-                // input field
-                _buildInput(),
+            SliverFillRemaining(
+              child: Column(
+                children: [
+                  // chat body
+                  Expanded(
+                    child: _buildList(),
+                  ),
+                  Visibility(
+                    visible: isLoading,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      // input field
+                      _buildInput(),
 
-                // submit button
-                _buildSubmit(),
-              ],
-            )
+                      // submit button
+                      _buildSubmit(),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -101,27 +114,35 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Expanded _buildInput() {
     return Expanded(
-        child: TextField(
-      textCapitalization: TextCapitalization.sentences,
-      style: TextStyle(color: Colors.white),
-      controller: _textController,
-      decoration: InputDecoration(
-        fillColor: Color.fromARGB(255, 123, 128, 123),
-        filled: true,
-        border: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: TextField(
+            textCapitalization: TextCapitalization.sentences,
+            style: TextStyle(color: Colors.grey),
+            controller: _textController,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              hintText: 'Type your message...',
+              hintStyle: TextStyle(color: Colors.grey),
+            ),
+          ),
+        ),
       ),
-    ));
+    );
   }
 
   Widget _buildSubmit() {
     return Visibility(
         visible: !isLoading,
         child: Container(
-          color: Color.fromARGB(255, 123, 128, 123),
+          color: Colors.transparent,
           child: IconButton(
             onPressed: () {
               // display user input
@@ -152,7 +173,7 @@ class _ChatScreenState extends State<ChatScreen> {
             },
             icon: Icon(
               Icons.send_rounded,
-              color: Colors.white,
+              color: Colors.grey,
             ),
           ),
         ));
@@ -186,50 +207,70 @@ class ChatMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.all(16),
-      color: chatMessageType == ChatMessageType.bot ? Colors.red : Colors.blue,
-      child: Row(
-        children: [
-          chatMessageType == ChatMessageType.bot
-              ? Container(
-                  margin: EdgeInsets.only(right: 16),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.red,
-                    child: Image.asset(
-                      "assets/gpt.png",
-                      color: Colors.white,
-                      scale: 1.5,
-                    ),
-                  ),
-                )
-              : Container(
-                  margin: EdgeInsets.only(right: 16),
-                  child: CircleAvatar(
-                    child: Icon(Icons.person),
-                  ),
-                ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: Text(
-                    text,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.copyWith(color: Colors.white),
-                  ),
-                )
-              ],
-            ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              ),
+            ],
+            color: chatMessageType == ChatMessageType.bot
+                ? Color.fromARGB(255, 239, 239, 239)
+                : Color.fromARGB(255, 29, 161, 242),
           ),
-        ],
+          margin: EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.all(16),
+          child: Row(
+            children: [
+              chatMessageType == ChatMessageType.bot
+                  ? Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      margin: EdgeInsets.only(right: 16),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.green,
+                        child: Image.asset(
+                          "assets/gpt.png",
+
+                          // color: Colors.black,
+                        ),
+                      ),
+                    )
+                  : Container(
+                      margin: EdgeInsets.only(right: 16),
+                      child: CircleAvatar(
+                        child: Icon(Icons.person),
+                      ),
+                    ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      child: Text(
+                        text,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: chatMessageType == ChatMessageType.bot
+                                ? Color.fromARGB(255, 97, 93, 93)
+                                : Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

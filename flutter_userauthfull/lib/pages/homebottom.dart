@@ -124,7 +124,7 @@ Widget _buildRooms(BuildContext context, int index) {
                     child: Container(
                       padding: EdgeInsets.all(10.0),
                       color: Color.fromARGB(255, 153, 153, 153),
-                      child: Text("Rs. 1500"),
+                      child: Text("Rs. 999"),
                     ),
                   )
                 ],
