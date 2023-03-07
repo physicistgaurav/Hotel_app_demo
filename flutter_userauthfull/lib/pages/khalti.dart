@@ -27,7 +27,7 @@ class _KhaltiState extends State<Khalti> {
   @override
   Widget build(BuildContext context) {
     return KhaltiScope(
-      publicKey: "test_public_key_cee04f3f6e3848cf8a86d38032fd39a3",
+      publicKey: "",
       enabledDebugging: true,
       builder: (context, navkey) {
         return Scaffold(
@@ -218,7 +218,7 @@ class KhatiHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KhaltiScope(
-        publicKey: "test_public_key_cee04f3f6e3848cf8a86d38032fd39a3",
+        publicKey: "",
         builder: (context, navigatorKey) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
