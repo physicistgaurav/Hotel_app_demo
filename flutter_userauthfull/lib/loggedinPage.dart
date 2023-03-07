@@ -3,9 +3,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_userauthfull/pages/friendsb.dart';
 import 'package:flutter_userauthfull/pages/homebottom.dart';
 import 'package:flutter_userauthfull/pages/inboxb.dart';
+import 'package:flutter_userauthfull/pages/mapb.dart';
 import 'package:flutter_userauthfull/pages/profileb.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,7 +21,7 @@ class _LoggedinPageState extends State<LoggedinPage> {
 
   final items = const [
     Icon(Icons.home, size: 22),
-    Icon(FontAwesomeIcons.users, size: 22),
+    Icon(FontAwesomeIcons.map, size: 22),
     Icon(FontAwesomeIcons.message, size: 22),
     Icon(Icons.person, size: 22),
   ];
@@ -32,7 +32,7 @@ class _LoggedinPageState extends State<LoggedinPage> {
         bottomNavigationBar: CurvedNavigationBar(
           items: items,
           index: index,
-          color: Color.fromARGB(247, 131, 131, 125),
+          color: Colors.cyan,
           backgroundColor: Colors.transparent,
           onTap: (selectedIndex) {
             setState(() {
@@ -52,7 +52,7 @@ class _LoggedinPageState extends State<LoggedinPage> {
         widget = const HomeBottom();
         break;
       case 1:
-        widget = const FriendsBottom();
+        widget = MapBottom();
         break;
       case 2:
         widget = const ChatScreen();

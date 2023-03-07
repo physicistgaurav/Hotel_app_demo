@@ -25,7 +25,7 @@ class _ProfilBottomState extends State<ProfilBottom> {
       children: [
         Scaffold(
           drawer: NavDrawer(),
-          backgroundColor: Color.fromARGB(255, 224, 214, 210),
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: ListView(
               children: [

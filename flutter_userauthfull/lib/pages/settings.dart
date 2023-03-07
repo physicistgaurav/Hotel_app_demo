@@ -6,7 +6,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_userauthfull/pages/friendsb.dart';
 import 'package:flutter_userauthfull/pages/homebottom.dart';
 import 'package:flutter_userauthfull/pages/inboxb.dart';
 import 'package:flutter_userauthfull/pages/profileb.dart';

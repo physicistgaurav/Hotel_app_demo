@@ -1,8 +1,10 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unused_import
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_userauthfull/loginform.dart';
+import 'package:flutter_userauthfull/pages/khalti.dart';
 
 final List rooms = [
   {"image": "assets/hotel/hotel1.jpg", "title": "Room around Pashipati"},
@@ -99,7 +101,14 @@ Widget _buildRooms(BuildContext context, int index) {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Image.asset(room['image']),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => KhatiHome()));
+                      },
+                      child: Image.asset(room['image'])),
                   Positioned(
                     right: 10,
                     top: 10,
@@ -190,36 +199,39 @@ Widget _buildRooms(BuildContext context, int index) {
 }
 
 Widget _buildCategories() {
-  return Container(
-    height: 100,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(
-          width: 15.0,
-        ),
-        Category(
-          backgroundColor: Colors.pink,
-          icon: Icons.hotel,
-          title: "Hotel",
-        ),
-        SizedBox(
-          width: 15.0,
-        ),
-        Category(
-          backgroundColor: Colors.blue,
-          title: "Restaurant",
-          icon: Icons.restaurant,
-        ),
-        SizedBox(
-          width: 15.0,
-        ),
-        Category(
-          icon: Icons.local_cafe,
-          backgroundColor: Colors.orange,
-          title: "Cafe",
-        )
-      ],
+  return GestureDetector(
+    onTap: () {},
+    child: Container(
+      height: 100,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            width: 15.0,
+          ),
+          Category(
+            backgroundColor: Colors.pink,
+            icon: Icons.hotel,
+            title: "Hotel",
+          ),
+          SizedBox(
+            width: 15.0,
+          ),
+          Category(
+            backgroundColor: Colors.blue,
+            title: "Restaurant",
+            icon: Icons.restaurant,
+          ),
+          SizedBox(
+            width: 15.0,
+          ),
+          Category(
+            icon: Icons.local_cafe,
+            backgroundColor: Colors.orange,
+            title: "Cafe",
+          )
+        ],
+      ),
     ),
   );
 }
