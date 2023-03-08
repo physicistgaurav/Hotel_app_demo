@@ -20,7 +20,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late File _imageFile = File('assets/cv.png');
+  dynamic _imageFile = null;
 
   final _picker = ImagePicker();
 
@@ -52,30 +52,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          // color: Colors.red,
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
               SizedBox(
                 height: 30,
               ),
-              SizedBox(
-                width: 80,
-                height: 80,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/cv.png'),
-                  radius: 100,
-                  backgroundColor: Colors.red,
-                  child: GestureDetector(
-                      onTap: _selectImage,
-                      child: _imageFile == null
-                          ? Icon(Icons.camera_alt_rounded,
-                              size: 80, color: Colors.grey)
-                          : CircleAvatar(
-                              radius: 95,
-                              backgroundImage: FileImage(_imageFile),
-                            )),
-                ),
-              ),
+              GestureDetector(
+                  onTap: _selectImage,
+                  child: _imageFile == null
+                      ? CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage('assets/up.png'),
+                          radius: 50,
+                          // child: ,
+                        )
+                      : CircleAvatar(
+                          radius: 50,
+                          backgroundImage: FileImage(_imageFile),
+                        )),
               SizedBox(height: 10),
               Text("Gaurav Rizal"),
               Text("gauravrijal03@gmail.com"),

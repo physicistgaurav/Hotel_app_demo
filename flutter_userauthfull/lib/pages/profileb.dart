@@ -19,11 +19,14 @@ class ProfilBottom extends StatefulWidget {
 }
 
 class _ProfilBottomState extends State<ProfilBottom> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Scaffold(
+          key: _scaffoldKey,
+          // appBar: AppBar(),
           drawer: NavDrawer(),
           backgroundColor: Colors.white,
           body: SafeArea(
@@ -36,17 +39,19 @@ class _ProfilBottomState extends State<ProfilBottom> {
                       height: 330,
                       color: Color.fromARGB(247, 131, 131, 125),
                     ),
-                    // Positioned(
-                    //   top: 20,
-                    //   left: 15,
-                    //   child: GestureDetector(
-                    //     onTap: (() {}),
-                    //     child: Icon(
-                    //       Icons.settings,
-                    //       color: Colors.white,
-                    //     ),
-                    //   ),
-                    // ),
+                    Positioned(
+                      top: 20,
+                      left: 15,
+                      child: GestureDetector(
+                        onTap: (() {
+                          _scaffoldKey.currentState?.openDrawer();
+                        }),
+                        child: Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                     Center(
                       child: Column(
                         // crossAxisAlignment: CrossAxisAlignment.center,

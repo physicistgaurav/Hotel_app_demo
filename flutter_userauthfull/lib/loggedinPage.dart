@@ -3,6 +3,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_userauthfull/drawer.dart';
 import 'package:flutter_userauthfull/pages/homebottom.dart';
 import 'package:flutter_userauthfull/pages/inboxb.dart';
 import 'package:flutter_userauthfull/pages/mapb.dart';
@@ -28,6 +29,7 @@ class _LoggedinPageState extends State<LoggedinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavDrawer(),
         extendBody: true,
         bottomNavigationBar: CurvedNavigationBar(
           items: items,

@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_userauthfull/drawerhead.dart';
+import 'package:flutter_userauthfull/loggedinPage.dart';
 import 'package:flutter_userauthfull/pages/homebottom.dart';
 import 'package:flutter_userauthfull/pages/inboxb.dart';
 import 'package:flutter_userauthfull/pages/settings.dart';
@@ -55,40 +56,19 @@ Widget menuItem(BuildContext context, int id, String title, IconData icon) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        backgroundColor: Color.fromRGBO(14, 167, 129, 1),
-                        title: Text("Travel Hub"),
-                        centerTitle: true,
-                        elevation: 0,
-                      ),
-                      body: HomeBottom())));
+                  builder: (context) => Scaffold(body: HomeBottom())));
           break;
         case 2:
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        backgroundColor: Color.fromRGBO(14, 167, 129, 1),
-                        title: Text("Travel Hub"),
-                        centerTitle: true,
-                        elevation: 0,
-                      ),
-                      body: HomeBottom())));
+                  builder: (context) => Scaffold(body: HomeBottom())));
           break;
         case 3:
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        backgroundColor: Color.fromRGBO(14, 167, 129, 1),
-                        title: Text("Travel Hub"),
-                        centerTitle: true,
-                        elevation: 0,
-                      ),
-                      body: ChatScreen())));
+                  builder: (context) => Scaffold(body: ChatScreen())));
           break;
         case 4:
           Navigator.push(
@@ -100,14 +80,7 @@ Widget menuItem(BuildContext context, int id, String title, IconData icon) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        backgroundColor: Color.fromRGBO(14, 167, 129, 1),
-                        title: Text("Travel Hub"),
-                        centerTitle: true,
-                        elevation: 0,
-                      ),
-                      body: ChatScreen())));
+                  builder: (context) => Scaffold(body: ChatScreen())));
           break;
         case 6:
           FirebaseAuth.instance.signOut();
